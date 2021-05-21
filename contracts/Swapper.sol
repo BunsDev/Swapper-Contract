@@ -27,7 +27,7 @@ contract Swapper is Ownable {
    
     function swap(uint256 _amount) public {
         require(_amount > 0, "amount cannot be 0");
-        require(isInitiated == true, "swappr::swap:Swap has not begun");
+        require(isInitiated == true, "Swapper: Swap has not begun");
         
         IERC20(synthetic).transferFrom(msg.sender, address(0x000000000000000000000000000000000000dEaD), _amount);
         
@@ -43,7 +43,7 @@ contract Swapper is Ownable {
     
     function initiateSwap() public onlyOwner {
         require(IERC20(authentic).balanceOf(address(this)) >= authTotal, "Target token balance too low");
-        require(isInitiated == false, "Swap already initiated");
+        require(isInitiated == false, "Swapper: Swap already initiated");
         isInitiated = true;
     }
     
